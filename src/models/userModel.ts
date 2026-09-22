@@ -1,8 +1,8 @@
 import pool from '../config/db.js';
 
 export const UserModel = {
-  findByUsername: async (username: string) => {
-    const [rows]: any = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+  findByUsername: async (identifier: string) => {
+    const [rows]: any = await pool.query('SELECT * FROM users WHERE username = ? OR email = ?', [identifier, identifier]);
     return rows[0];
   },
 
